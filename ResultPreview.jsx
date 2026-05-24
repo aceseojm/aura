@@ -134,8 +134,8 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
         background: "rgba(2,2,9,0.97)", display: "flex", alignItems: "center", gap: 12,
         position: "sticky", top: 0, zIndex: 10,
       }}>
-        <span style={{ fontSize: 10, letterSpacing: 5, color: `rgba(${r},${g},${b},0.7)` }}>A U R A</span>
-        <span style={{ fontSize: 12, color: "#4b5563", flex: 1 }}>운명 분석 결과</span>
+        <span style={{ fontSize: 22, letterSpacing: 3, color: `rgba(${r},${g},${b},1)`, fontWeight: 900 }}>AURA</span>
+        <span style={{ fontSize: 14, color: "#4b5563", flex: 1 }}>운명 분석 결과</span>
         <span style={{
           background: `rgba(${r},${g},${b},0.15)`, border: `1px solid rgba(${r},${g},${b},0.35)`,
           borderRadius: 20, padding: "3px 11px", fontSize: 9, color: `rgba(${r},${g},${b},1)`,
@@ -168,9 +168,9 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
                 display: "flex", alignItems: "center", justifyContent: "center", fontSize: 30,
               }}>✦</motion.div>
             <div>
-              <div style={{ fontSize: 9, letterSpacing: 4, color: `rgba(${r},${g},${b},0.6)`, marginBottom: 7 }}>YOUR AURA TYPE</div>
-              <div style={{ fontSize: 19, fontWeight: 900, color: "#c4b5fd", lineHeight: 1.2, marginBottom: 6 }}>{auraType}</div>
-              <div style={{ fontSize: 11, color: "#6b7280", marginBottom: 14, lineHeight: 1.5 }}>{auraDesc}</div>
+              <div style={{ fontSize: 11, letterSpacing: 4, color: `rgba(${r},${g},${b},0.6)`, marginBottom: 7 }}>YOUR AURA TYPE</div>
+              <div style={{ fontSize: 22, fontWeight: 900, color: "#c4b5fd", lineHeight: 1.2, marginBottom: 6 }}>{auraType}</div>
+              <div style={{ fontSize: 14, color: "#6b7280", marginBottom: 14, lineHeight: 1.5 }}>{auraDesc}</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {[
                   { text: "수(水) 72%", c: `rgba(${r},${g},${b},0.15)`, bc: `rgba(${r},${g},${b},0.4)`, tc: `rgb(${r},${g},${b})` },
@@ -178,7 +178,7 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
                   { text: chatType === "fusion" ? "융합 분석" : chatType === "tarot" ? "타로 분석" : "사주 분석", c: "rgba(236,72,153,0.12)", bc: "rgba(236,72,153,0.35)", tc: "#f9a8d4" },
                 ].filter(Boolean).map((t, i) => (
                   <span key={i} style={{
-                    padding: "4px 10px", borderRadius: 20, fontSize: 10, fontWeight: 600,
+                    padding: "5px 12px", borderRadius: 20, fontSize: 12, fontWeight: 600,
                     background: t.c, border: `0.5px solid ${t.bc}`, color: t.tc,
                   }}>{t.text}</span>
                 ))}
@@ -193,7 +193,7 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
             background: `rgba(${r},${g},${b},0.07)`,
             borderLeft: `3px solid rgba(${r},${g},${b},0.6)`,
             borderRadius: "0 12px 12px 0", padding: "18px 20px",
-            fontSize: 13, color: "#d1d5db", lineHeight: 1.95,
+            fontSize: 15, color: "#d1d5db", lineHeight: 2.0,
           }}>
             당신은 <Hl c={[r,g,b]}>깊은 물처럼 고요하되 강력한 힘</Hl>을 품고 있습니다. 오랫동안 스스로를 작게 여겨왔지만, 우주는 당신이 그 그릇보다 훨씬 크다는 것을 알고 있습니다.<br /><br />
             2026년 <Hl c={[r,g,b]}>8월을 기점</Hl>으로 당신의 잠재된 에너지가 표면으로 올라오기 시작합니다. 지금 당장의 불확실함은 그 전조일 뿐, 두려워하지 마세요.
@@ -207,7 +207,7 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
           <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
             {OHANG_DATA.map((o, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ fontSize: 11, width: 46, flexShrink: 0, color: "#9ca3af" }}>{o.label}</span>
+                <span style={{ fontSize: 13, width: 52, flexShrink: 0, color: "#9ca3af" }}>{o.label}</span>
                 <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 3, overflow: "hidden" }}>
                   <motion.div
                     initial={{ width: 0 }} animate={{ width: `${o.pct}%` }}
@@ -215,10 +215,10 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
                     style={{ height: "100%", borderRadius: 3, background: o.color }}
                   />
                 </div>
-                <span style={{ fontSize: 10, width: 30, textAlign: "right", color: "#6b7280", flexShrink: 0 }}>{o.pct}%</span>
+                <span style={{ fontSize: 12, width: 34, textAlign: "right", color: "#6b7280", flexShrink: 0 }}>{o.pct}%</span>
                 {o.tag && (
                   <span style={{
-                    fontSize: 9, padding: "2px 7px", borderRadius: 20,
+                    fontSize: 11, padding: "3px 9px", borderRadius: 20,
                     background: "rgba(255,255,255,0.06)", border: "0.5px solid rgba(255,255,255,0.15)",
                     color: "#9ca3af",
                   }}>{o.tag}</span>
@@ -238,9 +238,9 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
             background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(255,255,255,0.08)",
           }}>
             <div style={{ fontSize: 18, marginBottom: 8 }}>💜</div>
-            <div style={{ fontSize: 9, letterSpacing: 2, color: "#6b7280", marginBottom: 5 }}>연애 · 관계</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>감춰진 인연의 실</div>
-            <div style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.6 }}>지금 곁에 있는 사람을 다시 보세요. 새로운 만남보다 깊어질 관계가 더 중요한 시기입니다.</div>
+            <div style={{ fontSize: 11, letterSpacing: 2, color: "#6b7280", marginBottom: 5 }}>연애 · 관계</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>감춰진 인연의 실</div>
+            <div style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6 }}>지금 곁에 있는 사람을 다시 보세요. 새로운 만남보다 깊어질 관계가 더 중요한 시기입니다.</div>
             <div style={{ display: "flex", gap: 3, marginTop: 8 }}>
               {[1,2,3,4,5].map(s => <div key={s} style={{ width: 7, height: 7, borderRadius: "50%", background: s <= 4 ? `rgb(${r},${g},${b})` : "rgba(255,255,255,0.1)" }} />)}
             </div>
@@ -255,9 +255,9 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
               ].map((f, i) => (
                 <div key={i} style={{ borderRadius: 11, padding: "15px 14px", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(255,255,255,0.08)" }}>
                   <div style={{ fontSize: 18, marginBottom: 8 }}>{f.icon}</div>
-                  <div style={{ fontSize: 9, letterSpacing: 2, color: "#6b7280", marginBottom: 5 }}>{f.label}</div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{f.title}</div>
-                  <div style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.6 }}>상세 내용은 심층 리포트에서 확인하세요.</div>
+                  <div style={{ fontSize: 11, letterSpacing: 2, color: "#6b7280", marginBottom: 5 }}>{f.label}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{f.title}</div>
+                  <div style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6 }}>상세 내용은 심층 리포트에서 확인하세요.</div>
                   <div style={{ display: "flex", gap: 3, marginTop: 8 }}>
                     {[1,2,3,4,5].map(s => <div key={s} style={{ width: 7, height: 7, borderRadius: "50%", background: s <= f.score ? `rgb(${r},${g},${b})` : "rgba(255,255,255,0.1)" }} />)}
                   </div>
@@ -271,7 +271,7 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
               background: "rgba(2,2,9,0.5)", borderRadius: 11,
             }}>
               <Lock size={20} style={{ color: `rgba(${r},${g},${b},0.8)` }} />
-              <span style={{ fontSize: 12, color: "#9ca3af" }}>심층 리포트에서 전체 공개</span>
+              <span style={{ fontSize: 14, color: "#9ca3af" }}>심층 리포트에서 전체 공개</span>
             </div>
           </div>
         </Section>
@@ -295,11 +295,11 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
                   <div style={{ fontSize: 7, color: "#7c3aed" }}>{drawnCard.korean}</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: "#c4b5fd", marginBottom: 5 }}>{drawnCard.name} — {drawnCard.korean}</div>
-                  <div style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.7, marginBottom: 8 }}>{drawnCard.meaning}</div>
+                  <div style={{ fontSize: 16, fontWeight: 800, color: "#c4b5fd", marginBottom: 5 }}>{drawnCard.name} — {drawnCard.korean}</div>
+                  <div style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.7, marginBottom: 8 }}>{drawnCard.meaning}</div>
                   <span style={{
                     display: "inline-flex", alignItems: "center", gap: 5,
-                    padding: "4px 10px", borderRadius: 20, fontSize: 9, fontWeight: 700,
+                    padding: "5px 12px", borderRadius: 20, fontSize: 11, fontWeight: 700,
                     background: "rgba(52,211,153,0.12)", border: "0.5px solid rgba(52,211,153,0.35)", color: "#6ee7b7",
                   }}>✓ 수(水) 기운과 공명</span>
                 </div>
@@ -320,13 +320,13 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
                 ...(i >= 3 ? { filter: "blur(4px)", userSelect: "none" } : {}),
                 position: "relative",
               }}>
-                <div style={{ fontSize: 10, color: mo.peak ? `rgb(${r},${g},${b})` : "#6b7280", marginBottom: 5 }}>{mo.m}</div>
-                <div style={{ fontSize: 9, color: `rgb(${r},${g},${b})`, letterSpacing: -1 }}>{"★".repeat(mo.stars)}{"☆".repeat(5 - mo.stars)}</div>
-                <div style={{ fontSize: 8, color: mo.peak ? "#7c6fb5" : "#4b5563", marginTop: 4 }}>{mo.key}</div>
+                <div style={{ fontSize: 12, color: mo.peak ? `rgb(${r},${g},${b})` : "#6b7280", marginBottom: 5 }}>{mo.m}</div>
+                <div style={{ fontSize: 11, color: `rgb(${r},${g},${b})`, letterSpacing: -1 }}>{"★".repeat(mo.stars)}{"☆".repeat(5 - mo.stars)}</div>
+                <div style={{ fontSize: 10, color: mo.peak ? "#7c6fb5" : "#4b5563", marginTop: 4 }}>{mo.key}</div>
               </div>
             ))}
           </div>
-          <div style={{ textAlign: "center", marginTop: 10, fontSize: 11, color: "#4b5563" }}>
+          <div style={{ textAlign: "center", marginTop: 10, fontSize: 13, color: "#4b5563" }}>
             <Lock size={11} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />
             10월~12월 운세는 심층 리포트에서 공개됩니다
           </div>
@@ -350,9 +350,9 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
                 display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28,
               }}>🔮</div>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 3, color: `rgba(${r},${g},${b},0.6)`, marginBottom: 4 }}>AURA TALISMAN</div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: "#e2e8f0", marginBottom: 4 }}>수(水) · 달의 부적</div>
-                <div style={{ fontSize: 11, color: "#6b7280", lineHeight: 1.5 }}>고화질 A4 인쇄용 맞춤 부적</div>
+                <div style={{ fontSize: 11, letterSpacing: 3, color: `rgba(${r},${g},${b},0.6)`, marginBottom: 4 }}>AURA TALISMAN</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: "#e2e8f0", marginBottom: 4 }}>수(水) · 달의 부적</div>
+                <div style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.5 }}>고화질 A4 인쇄용 맞춤 부적</div>
               </div>
             </div>
             <div style={{
@@ -360,7 +360,7 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
               alignItems: "center", justifyContent: "center", gap: 8,
             }}>
               <Lock size={20} style={{ color: `rgba(${r},${g},${b},0.8)` }} />
-              <span style={{ fontSize: 12, color: "#9ca3af" }}>결제 후 즉시 다운로드</span>
+              <span style={{ fontSize: 14, color: "#9ca3af" }}>결제 후 즉시 다운로드</span>
             </div>
           </div>
         </Section>
@@ -378,7 +378,7 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
           border: `1px solid rgba(${r},${g},${b},0.2)`,
           borderRadius: 14, padding: "12px 16px", marginBottom: 12, textAlign: "center",
         }}>
-          <span style={{ fontSize: 11, color: "#9ca3af" }}>
+          <span style={{ fontSize: 13, color: "#9ca3af" }}>
             <Lock size={11} style={{ display: "inline", verticalAlign: "middle", marginRight: 4 }} />
             분야별 운세·월별 캘린더·아우라 부적이 잠겨 있습니다
           </span>
@@ -390,7 +390,7 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
             width: "100%", padding: "16px 0",
             background: `linear-gradient(90deg, rgb(${r},${g},${b}), rgba(${r},${g},${b},0.75))`,
             border: "none", borderRadius: 14, color: "#fff",
-            fontSize: 15, fontWeight: 800, cursor: "pointer",
+            fontSize: 17, fontWeight: 800, cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
             fontFamily: "inherit", letterSpacing: 1,
           }}
@@ -417,7 +417,7 @@ function Section({ title, children, color }) {
   const [r, g, b] = color || [139, 92, 246];
   return (
     <div style={{ padding: "22px 22px 0" }}>
-      <div style={{ fontSize: 9, letterSpacing: 4, color: "#4b5563", display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+      <div style={{ fontSize: 11, letterSpacing: 4, color: "#4b5563", display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
         {title}
         <div style={{ flex: 1, height: 0.5, background: "rgba(255,255,255,0.07)" }} />
       </div>

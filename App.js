@@ -178,7 +178,7 @@ function TarotFlip({ onSelect }) {
               justifyContent: "center", padding: 8, gap: 6
             }}>
               <div style={{ fontSize: 22 }}>☽</div>
-              <div style={{ fontSize: 9, color: "#c4b5fd", textAlign: "center", lineHeight: 1.4, fontWeight: 600 }}>
+              <div style={{ fontSize: 10, color: "#c4b5fd", textAlign: "center", lineHeight: 1.4, fontWeight: 600 }}>
                 {cards.current[i].name}
               </div>
               <div style={{ fontSize: 8, color: "#7c3aed", textAlign: "center" }}>
@@ -202,12 +202,12 @@ function BirthInput({ onSubmit }) {
       background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.25)",
       borderRadius: 12, padding: 16, marginTop: 8
     }}>
-      <div style={{ fontSize: 12, color: "#a78bfa", marginBottom: 10, fontWeight: 600, letterSpacing: 1 }}>
+      <div style={{ fontSize: 14, color: "#a78bfa", marginBottom: 10, fontWeight: 600, letterSpacing: 1 }}>
         ✦ 사주 데이터 입력
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         <div>
-          <label style={{ fontSize: 11, color: "#6d28d9", display: "block", marginBottom: 4 }}>생년월일</label>
+          <label style={{ fontSize: 13, color: "#6d28d9", display: "block", marginBottom: 4 }}>생년월일</label>
           <input
             type="date"
             value={date}
@@ -220,7 +220,7 @@ function BirthInput({ onSubmit }) {
           />
         </div>
         <div>
-          <label style={{ fontSize: 11, color: "#6d28d9", display: "block", marginBottom: 4 }}>태어난 시간 (선택)</label>
+          <label style={{ fontSize: 13, color: "#6d28d9", display: "block", marginBottom: 4 }}>태어난 시간 (선택)</label>
           <input
             type="time"
             value={time}
@@ -354,7 +354,7 @@ function PaywallModal({ onClose, guardianColor }) {
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 14 }}>
           <Lock size={12} style={{ color: "#4b5563" }} />
-          <span style={{ fontSize: 11, color: "#4b5563" }}>256bit SSL 암호화 · 언제든 환불 가능</span>
+          <span style={{ fontSize: 12, color: "#4b5563" }}>256bit SSL 암호화 · 언제든 환불 가능</span>
         </div>
       </motion.div>
     </motion.div>
@@ -372,7 +372,7 @@ function OhangCard({ birthDate, drawnCard }) {
       initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
       style={{
         background: "rgba(0,0,0,0.4)", border: `1px solid rgba(${r},${g},${b},0.4)`,
-        borderRadius: 12, padding: 14, marginTop: 10, fontSize: 12
+        borderRadius: 12, padding: 14, marginTop: 10, fontSize: 14
       }}
     >
       <div style={{ fontSize: 11, color: `rgb(${r},${g},${b})`, fontWeight: 700, marginBottom: 8, letterSpacing: 2 }}>
@@ -508,14 +508,15 @@ export default function App() {
               style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}
             >
               <div style={{
-                fontSize: 11, letterSpacing: 8, color: `rgba(${r},${g},${b},0.9)`,
-                fontWeight: 300, textTransform: "uppercase"
-              }}>A U R A</div>
+                fontSize: 38, letterSpacing: 6, color: `rgba(${r},${g},${b},1)`,
+                fontWeight: 900, textTransform: "uppercase",
+                textShadow: `0 0 40px rgba(${r},${g},${b},0.5)`
+              }}>AURA</div>
             </motion.div>
             <motion.div
               initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.35 }}
-              style={{ fontSize: 11, color: "#4b5563", letterSpacing: 3, marginBottom: 48, textTransform: "uppercase" }}
+              style={{ fontSize: 13, color: "#4b5563", letterSpacing: 4, marginBottom: 48, textTransform: "uppercase" }}
             >
               AI 운명 상담 서비스
             </motion.div>
@@ -546,7 +547,7 @@ export default function App() {
             >
               <div style={{
                 display: "flex", justifyContent: "space-between",
-                fontSize: 11, color: "#4b5563", marginBottom: 12, letterSpacing: 1
+                fontSize: 13, color: "#4b5563", marginBottom: 12, letterSpacing: 1
               }}>
                 <span>고요함</span>
                 <span style={{ color: `rgba(${r},${g},${b},0.8)`, fontWeight: 600 }}>현재 기분</span>
@@ -562,7 +563,7 @@ export default function App() {
                 }}
               />
               <div style={{
-                textAlign: "center", marginTop: 14, fontSize: 12,
+                textAlign: "center", marginTop: 14, fontSize: 14,
                 color: `rgba(${r},${g},${b},0.7)`, letterSpacing: 2
               }}>
                 {mood < 25 ? "잔잔한 물처럼" : mood < 50 ? "은은히 타오르는" : mood < 75 ? "강하게 맥동하는" : "폭발적인"} 아우라
@@ -580,7 +581,7 @@ export default function App() {
                 background: `rgba(${r},${g},${b},0.12)`,
                 border: `1px solid rgba(${r},${g},${b},0.5)`,
                 borderRadius: 50, color: `rgba(${r},${g},${b},1)`,
-                fontSize: 13, fontWeight: 700, cursor: "pointer",
+                fontSize: 15, fontWeight: 700, cursor: "pointer",
                 letterSpacing: 2, display: "flex", alignItems: "center", gap: 8
               }}
             >
@@ -604,9 +605,9 @@ export default function App() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}
               style={{ textAlign: "center", marginBottom: 48 }}
             >
-              <div style={{ fontSize: 11, letterSpacing: 6, color: "#4b5563", marginBottom: 16 }}>CHOOSE YOUR PATH</div>
-              <div style={{ fontSize: 22, fontWeight: 700, color: "#f8fafc" }}>운명의 세 갈래 길</div>
-              <div style={{ fontSize: 13, color: "#6b7280", marginTop: 8 }}>
+              <div style={{ fontSize: 12, letterSpacing: 6, color: "#4b5563", marginBottom: 16 }}>CHOOSE YOUR PATH</div>
+              <div style={{ fontSize: 26, fontWeight: 900, color: "#f8fafc" }}>운명의 세 갈래 길</div>
+              <div style={{ fontSize: 15, color: "#6b7280", marginTop: 8 }}>
                 어느 길에서 당신의 아우라가 빛날까요
               </div>
             </motion.div>
@@ -665,10 +666,10 @@ export default function App() {
                     }}>{card.icon}</div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                        <span style={{ fontWeight: 800, fontSize: 16, color: "#f1f5f9" }}>{card.title}</span>
-                        <span style={{ fontSize: 11, color: `rgba(${cr},${cg},${cb},0.9)`, letterSpacing: 1 }}>{card.subtitle}</span>
+                        <span style={{ fontWeight: 800, fontSize: 18, color: "#f1f5f9" }}>{card.title}</span>
+                        <span style={{ fontSize: 13, color: `rgba(${cr},${cg},${cb},0.9)`, letterSpacing: 1 }}>{card.subtitle}</span>
                       </div>
-                      <div style={{ fontSize: 12, color: "#6b7280", marginTop: 4, lineHeight: 1.4 }}>{card.desc}</div>
+                      <div style={{ fontSize: 13, color: "#6b7280", marginTop: 4, lineHeight: 1.5 }}>{card.desc}</div>
                     </div>
                     <ChevronRight size={18} style={{ color: `rgba(${cr},${cg},${cb},0.6)`, flexShrink: 0 }} />
                   </motion.div>
@@ -703,12 +704,12 @@ export default function App() {
                 {chatType === "tarot" ? "🌙" : chatType === "saju" ? "☀️" : "✦"}
               </div>
               <div>
-                <div style={{ fontWeight: 700, fontSize: 14, color: "#f1f5f9" }}>{guardian.name}</div>
-                <div style={{ fontSize: 11, color: `rgba(${gr},${gg},${gb},0.8)` }}>{guardian.title}</div>
+                <div style={{ fontWeight: 800, fontSize: 16, color: "#f1f5f9" }}>{guardian.name}</div>
+                <div style={{ fontSize: 13, color: `rgba(${gr},${gg},${gb},0.8)` }}>{guardian.title}</div>
               </div>
               <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 }}>
                 <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e" }} />
-                <span style={{ fontSize: 11, color: "#4b5563" }}>분석중</span>
+                <span style={{ fontSize: 13, color: "#4b5563" }}>분석중</span>
               </div>
             </div>
 
@@ -727,7 +728,7 @@ export default function App() {
                   }}
                 >
                   {msg.from === "ai" && (
-                    <div style={{ fontSize: 10, color: "#4b5563", marginBottom: 6, marginLeft: 2 }}>
+                    <div style={{ fontSize: 12, color: "#4b5563", marginBottom: 6, marginLeft: 2 }}>
                       {guardian.name}
                     </div>
                   )}
@@ -743,7 +744,7 @@ export default function App() {
                     padding: "12px 16px",
                   }}>
                     <div style={{
-                      fontSize: 13, lineHeight: 1.7, color: "#d1d5db",
+                      fontSize: 15, lineHeight: 1.8, color: "#d1d5db",
                       whiteSpace: "pre-wrap"
                     }}>{msg.text}</div>
 
@@ -817,7 +818,7 @@ export default function App() {
                             background: "rgba(255,255,255,0.04)",
                             border: `1px solid rgba(${gr},${gg},${gb},0.35)`,
                             borderRadius: 20, color: "#d1d5db",
-                            fontSize: 12, cursor: "pointer",
+                            fontSize: 14, cursor: "pointer",
                           }}
                         >
                           {opt}
@@ -875,7 +876,7 @@ export default function App() {
                   placeholder="당신의 이야기를 들려주세요..."
                   style={{
                     flex: 1, background: "transparent", border: "none", outline: "none",
-                    color: "#d1d5db", fontSize: 13
+                    color: "#d1d5db", fontSize: 15
                   }}
                 />
                 <motion.button
