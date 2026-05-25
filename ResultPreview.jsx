@@ -116,7 +116,6 @@ function PaywallModal({ guardianColor, onClose, onPaid }) {
 
 /* 메인 미리보기 컴포넌트 */
 export default function ResultPreview({ drawnCard, birthDate, chatType, guardianColor, onPaid }) {
-  const [showPaywall, setShowPaywall] = useState(false);
   const [r, g, b] = guardianColor || [139, 92, 246];
 
   const auraType = chatType === "saju" ? "토(土)·금(金) 혼합형" : chatType === "tarot" ? "수(水)·달 공명형" : "보라·수(水) 혼합형";
@@ -380,12 +379,12 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
         }}>
           <span style={{ fontSize: 13, color: "#9ca3af" }}>
             <Lock size={11} style={{ display: "inline", verticalAlign: "middle", marginRight: 4 }} />
-            분야별 운세·월별 캘린더·아우라 부적이 잠겨 있습니다
+            아래 버튼을 눌러 전체 결과를 확인하세요
           </span>
         </div>
         <motion.button
           whileTap={{ scale: 0.97 }}
-          onClick={() => setShowPaywall(true)}
+          onClick={onPaid}
           style={{
             width: "100%", padding: "16px 0",
             background: `linear-gradient(90deg, rgb(${r},${g},${b}), rgba(${r},${g},${b},0.75))`,
@@ -395,20 +394,10 @@ export default function ResultPreview({ drawnCard, birthDate, chatType, guardian
             fontFamily: "inherit", letterSpacing: 1,
           }}
         >
-          <Sparkles size={16} /> 전체 결과 열기 · ₩9,900
+          <Sparkles size={16} /> 전체 결과 보기 →
         </motion.button>
       </div>
 
-      {/* 페이월 모달 */}
-      <AnimatePresence>
-        {showPaywall && (
-          <PaywallModal
-            guardianColor={guardianColor || [139, 92, 246]}
-            onClose={() => setShowPaywall(false)}
-            onPaid={onPaid}
-          />
-        )}
-      </AnimatePresence>
     </div>
   );
 }

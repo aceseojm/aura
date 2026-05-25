@@ -686,66 +686,96 @@ export default function App() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             style={{
               position: "relative", zIndex: 1, height: "100vh",
-              display: "flex", flexDirection: "column"
+              display: "flex", flexDirection: "column",
+              background: `linear-gradient(135deg, #0d0820 0%, #130a2e 40%, #1a0b3d 70%, #0d0820 100%)`,
             }}
           >
+            {/* 보라 배경 파티클 레이어 */}
+            <div style={{
+              position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+              background: `
+                radial-gradient(ellipse at 20% 20%, rgba(${gr},${gg},${gb},0.18) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(${gr},${gg},${gb},0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(${gr},${gg},${gb},0.10) 0%, transparent 40%)
+              `
+            }} />
+
             {/* 헤더 */}
             <div style={{
-              padding: "16px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)",
-              display: "flex", alignItems: "center", gap: 12,
-              background: "rgba(2,2,9,0.9)", backdropFilter: "blur(20px)"
+              position: "relative", zIndex: 2,
+              padding: "18px 24px", borderBottom: `1px solid rgba(${gr},${gg},${gb},0.2)`,
+              display: "flex", alignItems: "center", gap: 14,
+              background: `rgba(13,8,32,0.85)`, backdropFilter: "blur(24px)",
             }}>
+              {/* 수호신 아바타 */}
               <div style={{
-                width: 40, height: 40, borderRadius: "50%",
-                background: `rgba(${gr},${gg},${gb},0.2)`,
-                border: `1px solid rgba(${gr},${gg},${gb},0.5)`,
-                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18
+                width: 46, height: 46, borderRadius: "50%",
+                background: `radial-gradient(circle at 35% 35%, rgba(${gr},${gg},${gb},0.5), rgba(${gr},${gg},${gb},0.15))`,
+                border: `1.5px solid rgba(${gr},${gg},${gb},0.7)`,
+                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20,
+                boxShadow: `0 0 16px rgba(${gr},${gg},${gb},0.3)`,
               }}>
                 {chatType === "tarot" ? "🌙" : chatType === "saju" ? "☀️" : "✦"}
               </div>
-              <div>
-                <div style={{ fontWeight: 800, fontSize: 16, color: "#f1f5f9" }}>{guardian.name}</div>
-                <div style={{ fontSize: 13, color: `rgba(${gr},${gg},${gb},0.8)` }}>{guardian.title}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 900, fontSize: 17, color: "#f0eaff", letterSpacing: 0.5 }}>{guardian.name}</div>
+                <div style={{ fontSize: 13, color: `rgba(${gr},${gg},${gb},0.9)`, letterSpacing: 1 }}>{guardian.title}</div>
               </div>
-              <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 }}>
-                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e" }} />
-                <span style={{ fontSize: 13, color: "#4b5563" }}>분석중</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <div style={{
+                  width: 7, height: 7, borderRadius: "50%", background: "#a78bfa",
+                  boxShadow: "0 0 8px #a78bfa", animation: "none"
+                }} />
+                <span style={{ fontSize: 13, color: "rgba(167,139,250,0.8)", letterSpacing: 1 }}>분석중</span>
               </div>
             </div>
 
             {/* 채팅 영역 */}
             <div style={{
-              flex: 1, overflowY: "auto", padding: "20px 16px",
-              display: "flex", flexDirection: "column", gap: 16
+              position: "relative", zIndex: 1,
+              flex: 1, overflowY: "auto", padding: "28px 20px",
+              display: "flex", flexDirection: "column", gap: 20,
+              maxWidth: 780, width: "100%", margin: "0 auto", alignSelf: "center",
+              boxSizing: "border-box",
             }}>
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
-                  initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", damping: 22 }}
                   style={{
                     display: "flex", flexDirection: "column",
-                    alignItems: msg.from === "ai" ? "flex-start" : "flex-end"
+                    alignItems: msg.from === "ai" ? "flex-start" : "flex-end",
                   }}
                 >
+                  {/* AI 발신자 이름 */}
                   {msg.from === "ai" && (
-                    <div style={{ fontSize: 12, color: "#4b5563", marginBottom: 6, marginLeft: 2 }}>
-                      {guardian.name}
+                    <div style={{
+                      fontSize: 13, color: `rgba(${gr},${gg},${gb},0.9)`,
+                      marginBottom: 7, marginLeft: 4, fontWeight: 600, letterSpacing: 1,
+                    }}>
+                      ✦ {guardian.name}
                     </div>
                   )}
+
+                  {/* 말풍선 */}
                   <div style={{
-                    maxWidth: "85%",
+                    maxWidth: "72%",
                     background: msg.from === "ai"
-                      ? `rgba(${gr},${gg},${gb},0.08)`
-                      : "rgba(255,255,255,0.08)",
+                      ? `linear-gradient(135deg, rgba(${gr},${gg},${gb},0.18) 0%, rgba(${gr},${gg},${gb},0.08) 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%)`,
                     border: msg.from === "ai"
-                      ? `1px solid rgba(${gr},${gg},${gb},0.2)`
-                      : "1px solid rgba(255,255,255,0.12)",
-                    borderRadius: msg.from === "ai" ? "4px 14px 14px 14px" : "14px 4px 14px 14px",
-                    padding: "12px 16px",
+                      ? `1px solid rgba(${gr},${gg},${gb},0.35)`
+                      : "1px solid rgba(255,255,255,0.2)",
+                    borderRadius: msg.from === "ai" ? "6px 20px 20px 20px" : "20px 6px 20px 20px",
+                    padding: "16px 20px",
+                    boxShadow: msg.from === "ai"
+                      ? `0 4px 24px rgba(${gr},${gg},${gb},0.15), inset 0 1px 0 rgba(255,255,255,0.06)`
+                      : `0 4px 16px rgba(0,0,0,0.3)`,
                   }}>
                     <div style={{
-                      fontSize: 15, lineHeight: 1.8, color: "#d1d5db",
-                      whiteSpace: "pre-wrap"
+                      fontSize: 16, lineHeight: 1.85, color: "#e8e0ff",
+                      whiteSpace: "pre-wrap", fontWeight: 400,
                     }}>{msg.text}</div>
 
                     {/* 타로 카드 플립 */}
@@ -764,9 +794,10 @@ export default function App() {
                     )}
                     {msg.special === "tarot_flip" && drawnCard && (
                       <div style={{
-                        marginTop: 10, padding: "10px 14px",
-                        background: `rgba(${gr},${gg},${gb},0.1)`,
-                        borderRadius: 8, fontSize: 12, color: "#c4b5fd"
+                        marginTop: 10, padding: "10px 16px",
+                        background: `rgba(${gr},${gg},${gb},0.15)`,
+                        borderRadius: 10, fontSize: 14, color: "#c4b5fd",
+                        border: `1px solid rgba(${gr},${gg},${gb},0.3)`,
                       }}>
                         ✦ {drawnCard.name} 선택됨
                       </div>
@@ -776,9 +807,6 @@ export default function App() {
                     {msg.special === "birth_input" && !birthDate && (
                       <BirthInput onSubmit={(date) => {
                         setBirthDate(date);
-                        const ohangResult = chatType === "fusion"
-                          ? <OhangCard birthDate={date} drawnCard={drawnCard} />
-                          : null;
                         setTimeout(() => {
                           setMessages(prev => [...prev, {
                             from: "ai",
@@ -792,33 +820,35 @@ export default function App() {
                       }} />
                     )}
                     {msg.special === "birth_input" && birthDate && (
-                      <div style={{
-                        marginTop: 10, fontSize: 11, color: "#6d28d9"
-                      }}>✓ {birthDate} 입력됨</div>
+                      <div style={{ marginTop: 10, fontSize: 13, color: "#a78bfa" }}>
+                        ✓ {birthDate} 입력됨
+                      </div>
                     )}
 
                     {/* 오행 분석 (융합 모드) */}
                     {msg.ohang && msg.birthDateData && (
                       <OhangCard birthDate={msg.birthDateData} drawnCard={drawnCard} />
                     )}
-
-
                   </div>
 
                   {/* 선택지 버튼 */}
                   {msg.from === "ai" && msg.options && chatStep === messages.filter(m => m.from === "ai").length - 1 && (
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 10, maxWidth: "85%" }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 9, marginTop: 12, maxWidth: "72%" }}>
                       {msg.options.map((opt, i) => (
                         <motion.button
                           key={i}
-                          whileTap={{ scale: 0.96 }}
+                          initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.07 }}
+                          whileHover={{ scale: 1.04, background: `rgba(${gr},${gg},${gb},0.22)` }}
+                          whileTap={{ scale: 0.97 }}
                           onClick={() => advanceChat(null, opt)}
                           style={{
-                            padding: "8px 14px",
-                            background: "rgba(255,255,255,0.04)",
-                            border: `1px solid rgba(${gr},${gg},${gb},0.35)`,
-                            borderRadius: 20, color: "#d1d5db",
-                            fontSize: 14, cursor: "pointer",
+                            padding: "10px 18px",
+                            background: `rgba(${gr},${gg},${gb},0.12)`,
+                            border: `1px solid rgba(${gr},${gg},${gb},0.45)`,
+                            borderRadius: 24, color: "#d4c8ff",
+                            fontSize: 15, cursor: "pointer", fontFamily: "inherit",
+                            boxShadow: `0 2px 12px rgba(${gr},${gg},${gb},0.15)`,
                           }}
                         >
                           {opt}
@@ -832,24 +862,28 @@ export default function App() {
               {/* 타이핑 인디케이터 */}
               {isTyping && (
                 <motion.div
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  style={{ display: "flex", alignItems: "center", gap: 10 }}
                 >
+                  <div style={{ fontSize: 13, color: `rgba(${gr},${gg},${gb},0.9)`, fontWeight: 600, letterSpacing: 1 }}>
+                    ✦ {guardian.name}
+                  </div>
                   <div style={{
-                    padding: "12px 16px",
-                    background: `rgba(${gr},${gg},${gb},0.08)`,
-                    border: `1px solid rgba(${gr},${gg},${gb},0.2)`,
-                    borderRadius: "4px 14px 14px 14px",
-                    display: "flex", gap: 4, alignItems: "center"
+                    padding: "14px 20px",
+                    background: `linear-gradient(135deg, rgba(${gr},${gg},${gb},0.18), rgba(${gr},${gg},${gb},0.08))`,
+                    border: `1px solid rgba(${gr},${gg},${gb},0.35)`,
+                    borderRadius: "6px 20px 20px 20px",
+                    display: "flex", gap: 6, alignItems: "center",
+                    boxShadow: `0 4px 24px rgba(${gr},${gg},${gb},0.15)`,
                   }}>
                     {[0, 1, 2].map(i => (
                       <motion.div
                         key={i}
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 0.7, repeat: Infinity, delay: i * 0.15 }}
+                        animate={{ y: [0, -5, 0], opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.18 }}
                         style={{
-                          width: 6, height: 6, borderRadius: "50%",
-                          background: `rgba(${gr},${gg},${gb},0.7)`
+                          width: 7, height: 7, borderRadius: "50%",
+                          background: `rgba(${gr},${gg},${gb},0.9)`,
                         }}
                       />
                     ))}
@@ -861,13 +895,18 @@ export default function App() {
 
             {/* 입력창 */}
             <div style={{
-              padding: "12px 16px", borderTop: "1px solid rgba(255,255,255,0.06)",
-              background: "rgba(2,2,9,0.9)", backdropFilter: "blur(20px)"
+              position: "relative", zIndex: 2,
+              padding: "14px 20px 20px",
+              borderTop: `1px solid rgba(${gr},${gg},${gb},0.2)`,
+              background: `rgba(13,8,32,0.9)`, backdropFilter: "blur(24px)",
             }}>
               <div style={{
-                display: "flex", gap: 10, alignItems: "center",
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.1)", borderRadius: 50, padding: "8px 8px 8px 18px"
+                maxWidth: 780, margin: "0 auto",
+                display: "flex", gap: 12, alignItems: "center",
+                background: `rgba(${gr},${gg},${gb},0.1)`,
+                border: `1px solid rgba(${gr},${gg},${gb},0.3)`,
+                borderRadius: 50, padding: "10px 10px 10px 22px",
+                boxShadow: `0 0 20px rgba(${gr},${gg},${gb},0.1)`,
               }}>
                 <input
                   value={userInput}
@@ -876,21 +915,26 @@ export default function App() {
                   placeholder="당신의 이야기를 들려주세요..."
                   style={{
                     flex: 1, background: "transparent", border: "none", outline: "none",
-                    color: "#d1d5db", fontSize: 15
+                    color: "#e8e0ff", fontSize: 16, fontFamily: "inherit",
                   }}
                 />
                 <motion.button
-                  whileTap={{ scale: 0.93 }}
+                  whileTap={{ scale: 0.92 }}
+                  whileHover={{ scale: 1.06 }}
                   onClick={() => userInput.trim() && advanceChat(userInput)}
                   style={{
-                    width: 36, height: 36, borderRadius: "50%",
-                    background: userInput.trim() ? `rgba(${gr},${gg},${gb},0.9)` : "rgba(255,255,255,0.08)",
-                    border: "none", cursor: "pointer", display: "flex",
+                    width: 42, height: 42, borderRadius: "50%",
+                    background: userInput.trim()
+                      ? `radial-gradient(circle, rgba(${gr},${gg},${gb},1), rgba(${gr},${gg},${gb},0.7))`
+                      : `rgba(${gr},${gg},${gb},0.15)`,
+                    border: `1px solid rgba(${gr},${gg},${gb},0.5)`,
+                    cursor: "pointer", display: "flex",
                     alignItems: "center", justifyContent: "center", flexShrink: 0,
-                    transition: "background 0.3s"
+                    transition: "all 0.25s",
+                    boxShadow: userInput.trim() ? `0 0 16px rgba(${gr},${gg},${gb},0.5)` : "none",
                   }}
                 >
-                  <Send size={14} style={{ color: "#fff" }} />
+                  <Send size={16} style={{ color: "#fff" }} />
                 </motion.button>
               </div>
             </div>
@@ -905,7 +949,7 @@ export default function App() {
           birthDate={birthDate}
           chatType={chatType}
           guardianColor={guardian ? guardian.color : [139, 92, 246]}
-          onPaid={() => setPhase("paid")}
+          onPaid={() => setPhase("report")}
         />
       )}
 
