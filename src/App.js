@@ -561,6 +561,7 @@ export default function App() {
   const chatEndRef = useRef(null);
   const [sajuData, setSajuData] = useState(null);
   const [sliderTouched, setSliderTouched] = useState(false);
+  const [chatBgColor, setChatBgColor] = useState(null); // 선택 색상 기반 배경
 
   // 무드 → 아우라 색상 변환
   useEffect(() => {
@@ -593,6 +594,25 @@ export default function App() {
     }, 1200);
   };
 
+  // 선택지 → 배경 색상 맵
+  const COLOR_CHOICE_MAP = {
+    "보라색 - 신비롭고 깊은": { bg:"#1a0a3d", accent:[139,92,246] },
+    "붉은색 - 강렬하고 뜨거운": { bg:"#2d0a0a", accent:[239,68,68] },
+    "파란색 - 고요하고 넓은": { bg:"#0a1a3d", accent:[59,130,246] },
+    "금색 - 찬란하고 귀한": { bg:"#2d1f00", accent:[245,158,11] },
+    "사랑과 관계": { bg:"#2d0a1a", accent:[236,72,153] },
+    "일과 커리어": { bg:"#0a1a2d", accent:[59,130,246] },
+    "나 자신에 관해": { bg:"#1a0a3d", accent:[139,92,246] },
+    "모든 것이 뒤엉켜 있어": { bg:"#1a1a0a", accent:[245,158,11] },
+    "물이나 바다": { bg:"#0a1a2d", accent:[59,130,246] },
+    "불이나 빛": { bg:"#2d0a0a", accent:[239,68,68] },
+    "숲이나 나무": { bg:"#0a2d0a", accent:[34,197,94] },
+    "하늘이나 별": { bg:"#0a0a2d", accent:[139,92,246] },
+    "직업이나 진로의 변화": { bg:"#0a1f2d", accent:[59,130,246] },
+    "인간관계의 변화": { bg:"#2d0a1a", accent:[236,72,153] },
+    "내면의 변화": { bg:"#1a0a3d", accent:[139,92,246] },
+  };
+
   const advanceChat = useCallback((userText, userOption) => {
     const flow = CHAT_FLOWS[chatType];
     const nextStep = chatStep + 1;
@@ -602,8 +622,15 @@ export default function App() {
     setMessages(prev => [...prev, userMsg]);
     setUserInput("");
 
-    // 아우라 컬러 미세 변화
-    setAuraColor(prev => prev.map(c => Math.min(255, Math.max(0, c + (Math.random() - 0.5) * 30))));
+    // 색상 선택 감지 → 배경 즉시 변경
+    if (COLOR_CHOICE_MAP[chosen]) {
+      const { bg, accent } = COLOR_CHOICE_MAP[chosen];
+      setChatBgColor({ bg, accent });
+      setAuraColor(accent);
+    } else {
+      // 일반 선택: 미세 변화
+      setAuraColor(prev => prev.map(c => Math.min(255, Math.max(0, c + (Math.random() - 0.5) * 25))));
+    }
 
     if (nextStep < flow.length) {
       setIsTyping(true);
@@ -955,13 +982,21 @@ export default function App() {
             style={{
               position: "relative", zIndex: 1, height: "100vh",
               display: "flex", flexDirection: "column",
-              background: `linear-gradient(135deg, #0d0820 0%, #130a2e 40%, #1a0b3d 70%, #0d0820 100%)`,
+              background: chatBgColor
+                ? `linear-gradient(135deg, ${chatBgColor.bg} 0%, #0d0820 40%, ${chatBgColor.bg} 100%)`
+                : `linear-gradient(135deg, #0d0820 0%, #130a2e 40%, #1a0b3d 70%, #0d0820 100%)`,
+              transition: "background 1.8s ease",
             }}
           >
-            {/* 보라 배경 파티클 레이어 */}
+            {/* 배경 파티클 글로우 - 선택 색상 반영 */}
             <div style={{
               position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-              background: `
+              transition: "background 1.8s ease",
+              background: chatBgColor ? `
+                radial-gradient(ellipse at 20% 20%, rgba(${chatBgColor.accent[0]},${chatBgColor.accent[1]},${chatBgColor.accent[2]},0.22) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(${chatBgColor.accent[0]},${chatBgColor.accent[1]},${chatBgColor.accent[2]},0.14) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(${chatBgColor.accent[0]},${chatBgColor.accent[1]},${chatBgColor.accent[2]},0.10) 0%, transparent 40%)
+              ` : `
                 radial-gradient(ellipse at 20% 20%, rgba(${gr},${gg},${gb},0.18) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 70%, rgba(${gr},${gg},${gb},0.12) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 100%, rgba(${gr},${gg},${gb},0.10) 0%, transparent 40%)
