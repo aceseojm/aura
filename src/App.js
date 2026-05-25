@@ -413,6 +413,7 @@ export default function App() {
   const [orbIntensity, setOrbIntensity] = useState(1);
   const chatEndRef = useRef(null);
   const [sajuData, setSajuData] = useState(null);
+  const [sliderTouched, setSliderTouched] = useState(false);
 
   // 무드 → 아우라 색상 변환
   useEffect(() => {
@@ -596,8 +597,35 @@ export default function App() {
             <motion.div
               initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              style={{ width: "100%", maxWidth: 320, marginTop: 32 }}
+              style={{ width: "100%", maxWidth: 340, marginTop: 32 }}
             >
+              {/* 안내 문구 — 터치 전엔 깜빡이며 표시 */}
+              <motion.div
+                animate={sliderTouched ? { opacity: 0, y: -6, height: 0, marginBottom: 0 } : { opacity: 1, y: 0, height: "auto", marginBottom: 12 }}
+                transition={{ duration: 0.4 }}
+                style={{ textAlign: "center", overflow: "hidden" }}
+              >
+                <motion.div
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 8,
+                    fontSize: 13, color: `rgba(${r},${g},${b},0.8)`,
+                    background: `rgba(${r},${g},${b},0.08)`,
+                    border: `1px solid rgba(${r},${g},${b},0.25)`,
+                    borderRadius: 20, padding: "7px 18px", letterSpacing: 0.5,
+                  }}
+                >
+                  <motion.span
+                    animate={{ x: [0, 6, 0] }}
+                    transition={{ duration: 1.2, repeat: Infinity }}
+                    style={{ fontSize: 16 }}
+                  >👆</motion.span>
+                  슬라이더를 움직여 지금 기분을 표현해보세요
+                </motion.div>
+              </motion.div>
+
+              {/* 라벨 */}
               <div style={{
                 display: "flex", justifyContent: "space-between",
                 fontSize: 13, color: "#4b5563", marginBottom: 12, letterSpacing: 1
@@ -606,21 +634,35 @@ export default function App() {
                 <span style={{ color: `rgba(${r},${g},${b},0.8)`, fontWeight: 600 }}>현재 기분</span>
                 <span>강렬함</span>
               </div>
+
               <input
                 type="range" min="0" max="100" value={mood}
-                onChange={e => setMood(Number(e.target.value))}
+                onChange={e => { setMood(Number(e.target.value)); setSliderTouched(true); }}
                 style={{
-                  width: "100%", appearance: "none", height: 3,
+                  width: "100%", appearance: "none", height: 4,
                   background: `linear-gradient(90deg, rgba(${r},${g},${b},0.9) ${mood}%, rgba(255,255,255,0.1) ${mood}%)`,
                   borderRadius: 4, outline: "none", cursor: "pointer"
                 }}
               />
-              <div style={{
-                textAlign: "center", marginTop: 14, fontSize: 16,
-                color: `rgba(${r},${g},${b},0.7)`, letterSpacing: 2
-              }}>
+
+              {/* 결과 문구 */}
+              <motion.div
+                animate={sliderTouched ? { opacity: 1, y: 0 } : { opacity: 0.4, y: 0 }}
+                style={{ textAlign: "center", marginTop: 14, fontSize: 16, color: `rgba(${r},${g},${b},0.85)`, letterSpacing: 2, fontWeight: 600 }}
+              >
                 {mood < 25 ? "잔잔한 물처럼" : mood < 50 ? "은은히 타오르는" : mood < 75 ? "강하게 맥동하는" : "폭발적인"} 아우라
-              </div>
+              </motion.div>
+
+              {/* 슬라이더 조작 후 아우라 반응 안내 */}
+              {sliderTouched && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  style={{ textAlign: "center", marginTop: 8, fontSize: 13, color: "#4b5563" }}
+                >
+                  ✦ 아우라가 당신의 감정에 반응하고 있습니다
+                </motion.div>
+              )}
             </motion.div>
 
             {/* CTA */}
