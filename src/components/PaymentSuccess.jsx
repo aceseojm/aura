@@ -28,15 +28,15 @@ export default function PaymentSuccess({ onOpenReport }) {
       >✦</motion.div>
 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-        style={{ fontSize: 10, letterSpacing: 4, color: "rgba(139,92,246,0.8)", marginBottom: 10 }}>
+        style={{ fontSize: 12, letterSpacing: 4, color: "rgba(139,92,246,0.8)", marginBottom: 10 }}>
         PAYMENT COMPLETE
       </motion.div>
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-        style={{ fontSize: 22, fontWeight: 800, color: "#f8fafc", marginBottom: 6 }}>
+        style={{ fontSize: 24, fontWeight: 800, color: "#f8fafc", marginBottom: 6 }}>
         결제가 완료되었습니다
       </motion.div>
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
-        style={{ fontSize: 12, color: "#6b7280" }}>
+        style={{ fontSize: 14, color: "#6b7280" }}>
         아우라 심층 리포트가 언락되었습니다
       </motion.div>
 
@@ -57,8 +57,8 @@ export default function PaymentSuccess({ onOpenReport }) {
         ].map(([k, v], i) => (
           <div key={i} style={{
             display: "flex", justifyContent: "space-between", alignItems: "center",
-            padding: "8px 0", borderBottom: i < 4 ? "0.5px solid rgba(255,255,255,0.06)" : "none",
-            fontSize: 12
+            padding: "9px 0", borderBottom: i < 4 ? "0.5px solid rgba(255,255,255,0.06)" : "none",
+            fontSize: 14
           }}>
             <span style={{ color: "#6b7280" }}>{k}</span>
             <span style={{ color: k === "주문 번호" ? "#a78bfa" : k === "상태" ? "#34d399" : "#d1d5db", fontWeight: 600 }}>{v}</span>
@@ -68,8 +68,8 @@ export default function PaymentSuccess({ onOpenReport }) {
           display: "flex", justifyContent: "space-between",
           marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(139,92,246,0.25)"
         }}>
-          <span style={{ color: "#9ca3af", fontWeight: 600, fontSize: 14 }}>결제 금액</span>
-          <span style={{ fontSize: 18, fontWeight: 900, color: "#a78bfa" }}>₩9,900</span>
+          <span style={{ color: "#9ca3af", fontWeight: 600, fontSize: 15 }}>결제 금액</span>
+          <span style={{ fontSize: 22, fontWeight: 900, color: "#a78bfa" }}>₩9,900</span>
         </div>
       </motion.div>
 
@@ -81,7 +81,7 @@ export default function PaymentSuccess({ onOpenReport }) {
           width: "100%", maxWidth: 340, padding: "15px 0",
           background: "linear-gradient(90deg, #7c3aed, #9333ea)",
           border: "none", borderRadius: 12, color: "#fff",
-          fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: 1
+          fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: 1
         }}
       >
         ✦ 나의 아우라 리포트 열기

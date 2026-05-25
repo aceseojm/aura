@@ -37,8 +37,8 @@ export default function DeepReport({ onBack }) {
           width: 30, height: 30, cursor: "pointer", color: "#9ca3af", fontSize: 16
         }}>←</button>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 9, letterSpacing: 4, color: "rgba(139,92,246,0.7)" }}>AURA DEEP REPORT</div>
-          <div style={{ fontSize: 14, fontWeight: 800, color: "#f1f5f9" }}>융합 아우라 분석 결과</div>
+          <div style={{ fontSize: 11, letterSpacing: 4, color: "rgba(139,92,246,0.7)" }}>AURA DEEP REPORT</div>
+          <div style={{ fontSize: 16, fontWeight: 800, color: "#f1f5f9" }}>융합 아우라 분석 결과</div>
         </div>
         <div style={{
           background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.35)",
@@ -67,8 +67,8 @@ export default function DeepReport({ onBack }) {
             </div>
             <div>
               <div style={{ fontSize: 9, letterSpacing: 4, color: "rgba(139,92,246,0.6)", marginBottom: 7 }}>YOUR AURA TYPE</div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "#c4b5fd", lineHeight: 1.2, marginBottom: 5 }}>보라·수(水)<br />혼합형 아우라</div>
-              <div style={{ fontSize: 11, color: "#6b7280", marginBottom: 14, lineHeight: 1.5 }}>직관과 창조의 경계를<br />걷는 심연의 영혼</div>
+              <div style={{ fontSize: 23, fontWeight: 900, color: "#c4b5fd", lineHeight: 1.2, marginBottom: 5 }}>보라·수(水)<br />혼합형 아우라</div>
+              <div style={{ fontSize: 14, color: "#6b7280", marginBottom: 14, lineHeight: 1.5 }}>직관과 창조의 경계를<br />걷는 심연의 영혼</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {[
                   { text: "수(水) 72%", bg: "rgba(139,92,246,0.15)", border: "rgba(139,92,246,0.4)", color: "#a78bfa" },
@@ -109,9 +109,9 @@ export default function DeepReport({ onBack }) {
                 background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(255,255,255,0.08)"
               }}>
                 <div style={{ fontSize: 18, marginBottom: 8 }}>{f.icon}</div>
-                <div style={{ fontSize: 9, letterSpacing: 2, color: "#6b7280", marginBottom: 5 }}>{f.label}</div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{f.title}</div>
-                <div style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.6 }}>{f.desc}</div>
+                <div style={{ fontSize: 11, letterSpacing: 2, color: "#6b7280", marginBottom: 5 }}>{f.label}</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{f.title}</div>
+                <div style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.6 }}>{f.desc}</div>
                 <div style={{ display: "flex", gap: 3, marginTop: 8 }}>
                   {[1,2,3,4,5].map(s => (
                     <div key={s} style={{ width: 7, height: 7, borderRadius: "50%", background: s <= f.score ? "#a78bfa" : "rgba(255,255,255,0.1)" }} />
@@ -129,11 +129,11 @@ export default function DeepReport({ onBack }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
             {OHANG.map((o, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ fontSize: 11, width: 46, flexShrink: 0, color: "#9ca3af" }}>{o.label}</span>
+                <span style={{ fontSize: 13, width: 52, flexShrink: 0, color: "#9ca3af" }}>{o.label}</span>
                 <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 3, overflow: "hidden" }}>
                   <div style={{ width: `${o.pct}%`, height: "100%", borderRadius: 3, background: o.color }} />
                 </div>
-                <span style={{ fontSize: 10, width: 30, textAlign: "right", color: "#6b7280", flexShrink: 0 }}>{o.pct}%</span>
+                <span style={{ fontSize: 12, width: 34, textAlign: "right", color: "#6b7280", flexShrink: 0 }}>{o.pct}%</span>
                 {o.tag && (
                   <span style={{
                     fontSize: 9, padding: "2px 7px", borderRadius: 20, marginLeft: 4,
@@ -161,8 +161,8 @@ export default function DeepReport({ onBack }) {
               <div style={{ fontSize: 7, color: "#7c3aed" }}>달 · 수(水)</div>
             </div>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 800, color: "#c4b5fd", marginBottom: 5 }}>The Moon — 달</div>
-              <div style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.7, marginBottom: 8 }}>직관과 잠재의식의 문이 열립니다. 보이지 않는 진실이 수면 위로 떠오르고 있습니다.</div>
+              <div style={{ fontSize: 16, fontWeight: 800, color: "#c4b5fd", marginBottom: 5 }}>The Moon — 달</div>
+              <div style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.7, marginBottom: 8 }}>직관과 잠재의식의 문이 열립니다. 보이지 않는 진실이 수면 위로 떠오르고 있습니다.</div>
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: 5,
                 padding: "4px 10px", borderRadius: 20, fontSize: 9, fontWeight: 700,
@@ -232,7 +232,7 @@ export default function DeepReport({ onBack }) {
           background: "rgba(255,255,255,0.02)",
           display: "flex", justifyContent: "space-between", alignItems: "center"
         }}>
-          <span style={{ fontSize: 10, color: "#374151" }}>AURA © 2026 · 융합 분석 v2.6<br />AURA-20260512-8841</span>
+          <span style={{ fontSize: 12, color: "#374151" }}>AURA © 2026 · 융합 분석 v2.6<br />AURA-20260512-8841</span>
           <button style={{
             padding: "6px 14px", background: "rgba(139,92,246,0.14)",
             border: "0.5px solid rgba(139,92,246,0.3)", borderRadius: 20,
@@ -247,7 +247,7 @@ export default function DeepReport({ onBack }) {
 function Section({ title, children }) {
   return (
     <div style={{ padding: "22px 22px 0" }}>
-      <div style={{ fontSize: 9, letterSpacing: 4, color: "#4b5563", display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+      <div style={{ fontSize: 11, letterSpacing: 4, color: "#4b5563", display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
         {title}
         <div style={{ flex: 1, height: 0.5, background: "rgba(255,255,255,0.07)" }} />
       </div>
