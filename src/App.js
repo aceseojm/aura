@@ -5,6 +5,7 @@ import ResultPreview from "./components/ResultPreview";
 import PaymentSuccess from "./components/PaymentSuccess";
 import DeepReport from "./components/DeepReport";
 import { analyzeSaju } from "./utils/sajuEngine";
+import TarotResult from "./components/TarotResult";
 
 /* ── 상수 & 타로 카드 데이터 ── */
 const TAROT_CARDS = [
@@ -545,7 +546,7 @@ function OhangCard({ birthDate, drawnCard, sajuData }) {
 
 /* ── 메인 앱 ── */
 export default function App() {
-  // orb → choice → chat → result → paid → report
+  // orb → choice → (tarot_flow | chat) → result → report
   const [phase, setPhase] = useState("orb");
   const [mood, setMood] = useState(50);
   const [auraColor, setAuraColor] = useState([139, 92, 246]);
@@ -578,6 +579,11 @@ export default function App() {
 
   const startChat = (type) => {
     setChatType(type);
+    if (type === "tarot") {
+      // 타로는 새 질문 기반 플로우로 이동
+      setPhase("tarot_flow");
+      return;
+    }
     setPhase("chat");
     const flow = CHAT_FLOWS[type];
     setIsTyping(true);
@@ -1234,6 +1240,26 @@ ${result.yearPillar.animal}띠, ${result.dominant.name} 기운이 강하게 흐�
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ── 타로 질문 기반 플로우 ── */}
+      {phase === "tarot_flow" && (
+        <TarotResult
+          onRestart={() => {
+            setMessages([]); setChatStep(0);
+            setDrawnCard(null); setBirthDate(null); setSajuData(null);
+            setChatType(null); setPhase("orb");
+          }}
+          onGoFusion={() => {
+            setMessages([]); setChatStep(0);
+            setDrawnCard(null); setBirthDate(null); setSajuData(null);
+            setChatType("fusion"); setPhase("chat");
+            const flow = CHAT_FLOWS["fusion"];
+            setTimeout(() => {
+              setMessages([{ ...flow[0], id: Date.now() }]);
+            }, 300);
+          }}
+        />
+      )}
 
       {/* ── 결과 미리보기 페이지 ── */}
       {phase === "result" && (
