@@ -515,18 +515,69 @@ export default function App() {
                 textShadow: `0 0 40px rgba(${r},${g},${b},0.5)`
               }}>AURA</div>
             </motion.div>
+            {/* 서비스 태그라인 */}
             <motion.div
               initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.35 }}
-              style={{ fontSize: 15, color: "#6b7280", letterSpacing: 4, marginBottom: 48, textTransform: "uppercase" }}
+              style={{ fontSize: 13, color: "#6b7280", letterSpacing: 5, marginBottom: 32, textTransform: "uppercase" }}
             >
               AI 운명 상담 서비스
+            </motion.div>
+
+            {/* 서비스 특징 카피 */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 }}
+              style={{
+                textAlign: "center", marginBottom: 36,
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 14,
+                maxWidth: 340,
+              }}
+            >
+              {/* 3요소 배지 */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
+                {[
+                  { icon: "☯", label: "사주 八字" },
+                  { icon: "×", label: null },
+                  { icon: "🃏", label: "타로 78장" },
+                  { icon: "×", label: null },
+                  { icon: "✦", label: "AI 딥러닝" },
+                ].map((item, i) => item.label ? (
+                  <div key={i} style={{
+                    padding: "5px 14px", borderRadius: 20,
+                    background: `rgba(${r},${g},${b},0.1)`,
+                    border: `1px solid rgba(${r},${g},${b},0.3)`,
+                    fontSize: 13, fontWeight: 700,
+                    color: `rgba(${r},${g},${b},0.95)`,
+                    display: "flex", alignItems: "center", gap: 6,
+                  }}>
+                    <span>{item.icon}</span> {item.label}
+                  </div>
+                ) : (
+                  <span key={i} style={{ fontSize: 16, color: `rgba(${r},${g},${b},0.4)`, fontWeight: 300 }}>×</span>
+                ))}
+              </div>
+
+              {/* 메인 카피 */}
+              <div style={{
+                fontSize: 15, color: "#9ca3af", lineHeight: 1.9, textAlign: "center", letterSpacing: 0.3,
+              }}>
+                3가지가 교차하는 지점에서<br />
+                <span style={{
+                  fontSize: 18, fontWeight: 800,
+                  color: "#f0eaff",
+                  background: `linear-gradient(90deg, rgb(${r},${g},${b}), rgba(${r},${g},${b},0.7))`,
+                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+                }}>
+                  당신의 운명이 선명해집니다
+                </span>
+              </div>
             </motion.div>
 
             {/* 아우라 구체 */}
             <motion.div
               initial={{ scale: 0.7, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.5, type: "spring", damping: 18 }}
+              transition={{ delay: 0.6, type: "spring", damping: 18 }}
               style={{ position: "relative" }}
             >
               <AuraOrb mood={mood} auraColor={auraColor} intensity={orbIntensity} />
