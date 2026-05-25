@@ -510,7 +510,7 @@ export default function App() {
               style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}
             >
               <div style={{
-                fontSize: 38, letterSpacing: 6, color: `rgba(${r},${g},${b},1)`,
+                fontSize: 48, letterSpacing: 5, color: `rgba(${r},${g},${b},1)`,
                 fontWeight: 900, textTransform: "uppercase",
                 textShadow: `0 0 40px rgba(${r},${g},${b},0.5)`
               }}>AURA</div>
@@ -518,7 +518,7 @@ export default function App() {
             <motion.div
               initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.35 }}
-              style={{ fontSize: 13, color: "#4b5563", letterSpacing: 4, marginBottom: 48, textTransform: "uppercase" }}
+              style={{ fontSize: 15, color: "#6b7280", letterSpacing: 4, marginBottom: 48, textTransform: "uppercase" }}
             >
               AI 운명 상담 서비스
             </motion.div>
@@ -565,7 +565,7 @@ export default function App() {
                 }}
               />
               <div style={{
-                textAlign: "center", marginTop: 14, fontSize: 14,
+                textAlign: "center", marginTop: 14, fontSize: 16,
                 color: `rgba(${r},${g},${b},0.7)`, letterSpacing: 2
               }}>
                 {mood < 25 ? "잔잔한 물처럼" : mood < 50 ? "은은히 타오르는" : mood < 75 ? "강하게 맥동하는" : "폭발적인"} 아우라
@@ -607,9 +607,9 @@ export default function App() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}
               style={{ textAlign: "center", marginBottom: 48 }}
             >
-              <div style={{ fontSize: 12, letterSpacing: 6, color: "#4b5563", marginBottom: 16 }}>CHOOSE YOUR PATH</div>
-              <div style={{ fontSize: 26, fontWeight: 900, color: "#f8fafc" }}>운명의 세 갈래 길</div>
-              <div style={{ fontSize: 15, color: "#6b7280", marginTop: 8 }}>
+              <div style={{ fontSize: 13, letterSpacing: 6, color: "#6b7280", fontWeight:600, marginBottom: 16 }}>CHOOSE YOUR PATH</div>
+              <div style={{ fontSize: 28, fontWeight: 900, color: "#f8fafc" }}>운명의 세 갈래 길</div>
+              <div style={{ fontSize: 16, color: "#9ca3af", marginTop: 8 }}>
                 어느 길에서 당신의 아우라가 빛날까요
               </div>
             </motion.div>
@@ -668,10 +668,10 @@ export default function App() {
                     }}>{card.icon}</div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                        <span style={{ fontWeight: 800, fontSize: 18, color: "#f1f5f9" }}>{card.title}</span>
-                        <span style={{ fontSize: 13, color: `rgba(${cr},${cg},${cb},0.9)`, letterSpacing: 1 }}>{card.subtitle}</span>
+                        <span style={{ fontWeight: 900, fontSize: 19, color: "#f1f5f9" }}>{card.title}</span>
+                        <span style={{ fontSize: 14, color: `rgba(${cr},${cg},${cb},1)`, letterSpacing: 1, fontWeight:600 }}>{card.subtitle}</span>
                       </div>
-                      <div style={{ fontSize: 13, color: "#6b7280", marginTop: 4, lineHeight: 1.5 }}>{card.desc}</div>
+                      <div style={{ fontSize: 14, color: "#9ca3af", marginTop: 5, lineHeight: 1.5 }}>{card.desc}</div>
                     </div>
                     <ChevronRight size={18} style={{ color: `rgba(${cr},${cg},${cb},0.6)`, flexShrink: 0 }} />
                   </motion.div>
@@ -720,8 +720,8 @@ export default function App() {
                 {chatType === "tarot" ? "🌙" : chatType === "saju" ? "☀️" : "✦"}
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 900, fontSize: 17, color: "#f0eaff", letterSpacing: 0.5 }}>{guardian.name}</div>
-                <div style={{ fontSize: 13, color: `rgba(${gr},${gg},${gb},0.9)`, letterSpacing: 1 }}>{guardian.title}</div>
+                <div style={{ fontWeight: 900, fontSize: 19, color: "#f0eaff", letterSpacing: 0.5 }}>{guardian.name}</div>
+                <div style={{ fontSize: 15, color: `rgba(${gr},${gg},${gb},0.9)`, letterSpacing: 1 }}>{guardian.title}</div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <div style={{
@@ -753,8 +753,8 @@ export default function App() {
                   {/* AI 발신자 이름 */}
                   {msg.from === "ai" && (
                     <div style={{
-                      fontSize: 13, color: `rgba(${gr},${gg},${gb},0.9)`,
-                      marginBottom: 7, marginLeft: 4, fontWeight: 600, letterSpacing: 1,
+                      fontSize: 14, color: `rgba(${gr},${gg},${gb},0.95)`,
+                      marginBottom: 7, marginLeft: 4, fontWeight: 700, letterSpacing: 1,
                     }}>
                       ✦ {guardian.name}
                     </div>
@@ -776,7 +776,7 @@ export default function App() {
                       : `0 4px 16px rgba(0,0,0,0.3)`,
                   }}>
                     <div style={{
-                      fontSize: 16, lineHeight: 1.85, color: "#e8e0ff",
+                      fontSize: 17, lineHeight: 1.9, color: "#e8e0ff",
                       whiteSpace: "pre-wrap", fontWeight: 400,
                     }}>{msg.text}</div>
 
@@ -853,7 +853,7 @@ ${result.yearPillar.animal}띠, ${result.dominant.name} 기운이 강하게 흐�
                             background: `rgba(${gr},${gg},${gb},0.12)`,
                             border: `1px solid rgba(${gr},${gg},${gb},0.45)`,
                             borderRadius: 24, color: "#d4c8ff",
-                            fontSize: 15, cursor: "pointer", fontFamily: "inherit",
+                            fontSize: 16, cursor: "pointer", fontFamily: "inherit",
                             boxShadow: `0 2px 12px rgba(${gr},${gg},${gb},0.15)`,
                           }}
                         >
@@ -871,7 +871,7 @@ ${result.yearPillar.animal}띠, ${result.dominant.name} 기운이 강하게 흐�
                   initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                   style={{ display: "flex", alignItems: "center", gap: 10 }}
                 >
-                  <div style={{ fontSize: 13, color: `rgba(${gr},${gg},${gb},0.9)`, fontWeight: 600, letterSpacing: 1 }}>
+                  <div style={{ fontSize: 15, color: `rgba(${gr},${gg},${gb},0.9)`, fontWeight: 600, letterSpacing: 1 }}>
                     ✦ {guardian.name}
                   </div>
                   <div style={{
@@ -921,7 +921,7 @@ ${result.yearPillar.animal}띠, ${result.dominant.name} 기운이 강하게 흐�
                   placeholder="당신의 이야기를 들려주세요..."
                   style={{
                     flex: 1, background: "transparent", border: "none", outline: "none",
-                    color: "#e8e0ff", fontSize: 16, fontFamily: "inherit",
+                    color: "#e8e0ff", fontSize: 17, fontFamily: "inherit",
                   }}
                 />
                 <motion.button
