@@ -83,13 +83,19 @@ const RESPONSE_MAP = {
   "몰랐던 나의 모습을 발견했어": "새로운 자신을 만나는 순간이군요. 이것이 바로 아우라 분석이 존재하는 이유입니다.\n\n당신의 운명 지도가 완성되었습니다.",
   "반은 맞고 반은 모르겠어": "그 반반의 경계에서 진짜 당신이 숨어 있습니다. 아직 발견되지 않은 에너지가 남아있어요.\n\n지금 보이는 것만으로도 충분히 강력한 분석입니다.",
   "더 깊이 알고 싶어": "그 탐구의 에너지 자체가 당신의 가장 강한 힘입니다.\n\n심층 결과에서 지금보다 훨씬 더 깊은 이야기를 들려드리겠습니다.",
+
+  // 타로 Q3: 카드 키워드 반응
+  "희망과 새로운 시작": "희망이라는 단어가 당신 안에서 공명하는군요. 그것은 이미 당신 내면에 그 에너지가 준비되어 있다는 신호입니다.\n\n분석을 완성하기 위해 생년월일이 필요합니다. 태어난 날의 에너지와 이 카드를 연결해볼게요.",
+  "숨겨진 진실의 발견": "진실을 마주하고자 하는 용기... 지금 당신의 아우라에서 가장 강하게 진동하는 에너지입니다.\n\n생년월일을 알려주시면 그 진실이 어디서 오는지 사주와 함께 읽어드리겠습니다.",
+  "내면의 용기와 힘": "내면의 힘이 공명한다는 것, 이미 당신은 그 힘을 느끼고 있다는 뜻입니다.\n\n생년월일을 더하면 그 힘이 언제 가장 강하게 발현되는지 알 수 있습니다.",
+  "변화와 결단의 순간": "변화와 결단... 지금 당신 앞에 실제로 선택의 기로가 있는 것 같군요.\n\n생년월일을 입력해주시면 그 결단의 타이밍을 사주로 읽어드리겠습니다.",
 };
 
 const CHAT_FLOWS = {
   tarot: [
     { from: "ai", text: "...당신의 아우라가 저에게 닿습니다. 파동이 느껴지는군요.\n\n오늘, 당신 마음 속 가장 무거운 질문이 무엇인가요?", options: ["사랑과 관계", "일과 커리어", "나 자신에 관해", "모든 것이 뒤엉켜 있어"] },
     { from: "ai", text: "__RESPONSE__", special: "tarot_flip" },
-    { from: "ai", text: "이 카드가 오늘의 당신에게 말을 건넵니다.\n\n카드의 메시지 중 어떤 것이 가장 마음에 닿나요?", options: ["변화에 대한 이야기", "관계에 대한 메시지", "내면의 힘에 관한 것", "아직 잘 모르겠어"] },
+    { from: "ai", text: "__CARD_RESPONSE__", options: ["희망과 새로운 시작", "숨겨진 진실의 발견", "내면의 용기와 힘", "변화와 결단의 순간"] },
     { from: "ai", text: "__RESPONSE__", special: "birth_input" },
   ],
   saju: [
@@ -515,11 +521,17 @@ export default function App() {
       setTimeout(() => {
         setChatStep(nextStep);
 
-        // __RESPONSE__ 플레이스홀더를 유저 선택에 맞는 맞춤 응답으로 교체
+        // 플레이스홀더를 맞춤 응답으로 교체
         const nextMsg = { ...flow[nextStep], id: Date.now() + 1 };
         if (nextMsg.text === "__RESPONSE__") {
           const mapped = RESPONSE_MAP[chosen];
           nextMsg.text = mapped || "그렇군요... 당신의 에너지가 선명하게 읽힙니다.";
+        }
+        // 타로 카드 선택 후 다음 메시지: 카드명 포함한 맞춤 멘트
+        if (nextMsg.text === "__CARD_RESPONSE__") {
+          nextMsg.text = `✦ ${chosen} 카드가 당신을 선택했군요.
+
+이 카드의 키워드 중 지금 당신의 마음에 가장 먼저 닿는 단어는 무엇인가요?`;
         }
 
         setMessages(prev => [...prev, nextMsg]);
@@ -958,12 +970,42 @@ export default function App() {
                     )}
                     {msg.special === "tarot_flip" && drawnCard && (
                       <div style={{
-                        marginTop: 10, padding: "10px 16px",
-                        background: `rgba(${gr},${gg},${gb},0.15)`,
-                        borderRadius: 10, fontSize: 14, color: "#c4b5fd",
-                        border: `1px solid rgba(${gr},${gg},${gb},0.3)`,
+                        marginTop: 14, display: "flex", alignItems: "center", gap: 14,
+                        padding: "14px 16px",
+                        background: `linear-gradient(135deg, rgba(${gr},${gg},${gb},0.18), rgba(${gr},${gg},${gb},0.08))`,
+                        borderRadius: 14, border: `1px solid rgba(${gr},${gg},${gb},0.4)`,
+                        boxShadow: `0 0 20px rgba(${gr},${gg},${gb},0.15)`,
                       }}>
-                        ✦ {drawnCard.name} 선택됨
+                        {/* 카드 미니 이미지 */}
+                        <div style={{
+                          width: 52, height: 82, borderRadius: 8, flexShrink: 0,
+                          background: "linear-gradient(145deg, #0f172a, #1e1b4b)",
+                          border: `1.5px solid rgba(${gr},${gg},${gb},0.8)`,
+                          display: "flex", flexDirection: "column", alignItems: "center",
+                          justifyContent: "center", gap: 4, padding: 6,
+                          boxShadow: `0 0 12px rgba(${gr},${gg},${gb},0.3)`,
+                        }}>
+                          <div style={{ fontSize: 20 }}>☽</div>
+                          <div style={{ fontSize: 7, color: "#c4b5fd", textAlign: "center", fontWeight: 700, lineHeight: 1.3 }}>
+                            {drawnCard.name}
+                          </div>
+                          <div style={{ fontSize: 6, color: "#7c3aed" }}>{drawnCard.element}</div>
+                        </div>
+                        {/* 카드 정보 */}
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 11, color: `rgba(${gr},${gg},${gb},0.8)`, letterSpacing: 2, marginBottom: 5 }}>
+                            ✦ 선택된 카드
+                          </div>
+                          <div style={{ fontSize: 16, fontWeight: 800, color: "#c4b5fd", marginBottom: 4 }}>
+                            {drawnCard.name}
+                          </div>
+                          <div style={{ fontSize: 13, color: "#9ca3af", fontStyle: "italic" }}>
+                            {drawnCard.korean} · {drawnCard.element}
+                          </div>
+                          <div style={{ fontSize: 12, color: "#7c6fb5", marginTop: 6, lineHeight: 1.5 }}>
+                            {drawnCard.meaning.slice(0, 30)}...
+                          </div>
+                        </div>
                       </div>
                     )}
 
