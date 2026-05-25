@@ -4,6 +4,7 @@ import { Sparkles, ChevronRight, X, Send, Lock } from "lucide-react";
 import ResultPreview from "./components/ResultPreview";
 import PaymentSuccess from "./components/PaymentSuccess";
 import DeepReport from "./components/DeepReport";
+import { analyzeSaju } from "./utils/sajuEngine";
 
 /* ── 상수 & 타로 카드 데이터 ── */
 const TAROT_CARDS = [
@@ -411,6 +412,7 @@ export default function App() {
   const [birthDate, setBirthDate] = useState(null);
   const [orbIntensity, setOrbIntensity] = useState(1);
   const chatEndRef = useRef(null);
+  const [sajuData, setSajuData] = useState(null);
 
   // 무드 → 아우라 색상 변환
   useEffect(() => {
@@ -807,10 +809,14 @@ export default function App() {
                     {msg.special === "birth_input" && !birthDate && (
                       <BirthInput onSubmit={(date) => {
                         setBirthDate(date);
+                        const result = analyzeSaju(date, drawnCard);
+                        setSajuData(result);
                         setTimeout(() => {
                           setMessages(prev => [...prev, {
                             from: "ai",
-                            text: `${date} 생의 에너지가 읽힙니다...`,
+                            text: `${date} 생의 에너지가 읽힙니다...
+
+${result.yearPillar.animal}띠, ${result.dominant.name} 기운이 강하게 흐르는 당신의 아우라가 선명해집니다.`,
                             ohang: chatType !== "tarot",
                             birthDateData: date,
                             id: Date.now()
@@ -948,6 +954,7 @@ export default function App() {
           drawnCard={drawnCard}
           birthDate={birthDate}
           chatType={chatType}
+          sajuData={sajuData}
           guardianColor={guardian ? guardian.color : [139, 92, 246]}
           onPaid={() => setPhase("report")}
         />
@@ -960,7 +967,11 @@ export default function App() {
 
       {/* ── 심층 리포트 페이지 ── */}
       {phase === "report" && (
-        <DeepReport onBack={() => setPhase("paid")} />
+        <DeepReport
+          sajuData={sajuData}
+          drawnCard={drawnCard}
+          onBack={() => setPhase("result")}
+        />
       )}
     </div>
   );
